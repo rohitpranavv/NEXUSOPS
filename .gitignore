@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+node_modules/
+dist/
+.env
+.DS_Store
+coverage/
+.vercel/
+*.log
+*.err.log
+*.db
