@@ -1,3 +1,5 @@
+import os
+
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -5,7 +7,9 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     app_name: str = "NexusOps AI"
-    database_url: str = "sqlite:///./nexusops.db"
+    database_url: str = os.getenv("DATABASE_URL") or (
+        "sqlite:////tmp/nexusops.db" if os.getenv("VERCEL") else "sqlite:///./nexusops.db"
+    )
     redis_url: str = "redis://localhost:6379/0"
     neo4j_uri: str = "bolt://localhost:7687"
     neo4j_user: str = "neo4j"
